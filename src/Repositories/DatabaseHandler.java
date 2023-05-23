@@ -12,7 +12,5 @@ public class DatabaseHandler {
         return DriverManager.getConnection(DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD);
     }
 
-
-
     // Poți adăuga și alte metode pentru a actualiza sau șterge cărți, dacă e nevoie
 }

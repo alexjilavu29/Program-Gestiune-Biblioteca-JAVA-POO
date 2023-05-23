@@ -89,6 +89,16 @@ public class Order {
         this.pastDueTime = pastDueTime;
     }
 
+    public Order(Order o) {
+        this.idOrder = o.idOrder;
+        this.idClient = o.idClient;
+        this.outDate = o.outDate;
+        this.numberOfBooks = o.numberOfBooks;
+        this.returnDate = o.returnDate;
+        this.completed = o.completed;
+        this.pastDueTime = o.pastDueTime;
+    }
+
     @Override
     public String toString() {
         return "Classes.Order{" +

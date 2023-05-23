@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.Objects;
+
 public class Book {
     private int idBook;
     private String title;
@@ -68,6 +70,15 @@ public class Book {
         this.copiesInStore= copiesInStore;
     }
 
+    public Book(Book b) {
+        this.idBook= b.idBook;
+        this.title = b.title;
+        this.author = b.author;
+        this.year = b.year;
+        this.genre = b.genre;
+        this.copiesInStore= b.copiesInStore;
+    }
+
     @Override
     public String toString() {
         return "Classes.Book{" +
@@ -81,6 +92,17 @@ public class Book {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Book book)) return false;
+        return idBook == book.idBook && year == book.year && copiesInStore == book.copiesInStore && title.equals(book.title) && author.equals(book.author) && genre.equals(book.genre);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idBook, title, author, year, genre, copiesInStore);
+    }
 
 
 }

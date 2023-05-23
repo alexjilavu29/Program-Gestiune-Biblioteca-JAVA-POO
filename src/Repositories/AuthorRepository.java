@@ -1,10 +1,13 @@
 package Repositories;
 
 import Classes.Author;
+import Classes.Book;
 
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 public final class AuthorRepository {
     public List<Author> authorList;
 
@@ -73,4 +76,22 @@ public final class AuthorRepository {
         }
     }
 
+    public Author inputAuthorDetails(){
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("Introduceți numele autorului:");
+        String name = in.nextLine();
+
+        System.out.println("Introduceți anul nașterii autorului:");
+        int birthYear = in.nextInt();
+        in.nextLine();
+
+        System.out.println("Introduceți numărul de publicații (aproximativ) al autorului:");
+        int numberOfPublications = in.nextInt();
+        in.nextLine();
+
+        Author author = new Author(-1,name,birthYear,numberOfPublications,0);
+
+        return author;
+    }
 }
