@@ -5,7 +5,7 @@ import java.sql.*;
 public class DatabaseHandler {
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/pao_library_db";
     private static final String DATABASE_USER = "root";
-    private static final String DATABASE_PASSWORD = "Alex@908";
+    private static final String DATABASE_PASSWORD = " ";
 
 
     public static Connection getConnection() throws SQLException {
