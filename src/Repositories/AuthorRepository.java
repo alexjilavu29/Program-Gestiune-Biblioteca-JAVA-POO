@@ -1,9 +1,11 @@
 package Repositories;
 
 import Classes.Author;
-import Classes.Book;
+import Support.AuditLogs;
+import Support.DatabaseHandler;
 
 import java.sql.*;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,6 +40,10 @@ public final class AuthorRepository {
                     int generatedId = generatedKeys.getInt(1);
                     author.setId(generatedId);
                 }
+                Calendar calendarAudit = Calendar.getInstance();
+                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                AuditLogs auditLogs = new AuditLogs();
+                auditLogs.insertAudit("Inserare autor efectuată",dateUtilAudit);
             }
         }
     }
@@ -54,6 +60,10 @@ public final class AuthorRepository {
             int result = pstmt.executeUpdate();
         }
         authorList.remove(author);
+        Calendar calendarAudit = Calendar.getInstance();
+        java.util.Date  dateUtilAudit = calendarAudit.getTime();
+        AuditLogs auditLogs = new AuditLogs();
+        auditLogs.insertAudit("Ștergere autor efectuată.",dateUtilAudit);
     }
 
     public void getAuthors() throws SQLException {

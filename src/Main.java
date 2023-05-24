@@ -6,9 +6,11 @@ import Repositories.AuthorRepository;
 import Repositories.BookRepository;
 import Repositories.ClientRepository;
 import Repositories.OrderRepository;
+import Support.AuditLogs;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.Scanner;
 
 
@@ -16,6 +18,9 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
         Scanner in = new Scanner(System.in);
+        Calendar calendarAuditStart = Calendar.getInstance();
+        java.util.Date  dateUtilAuditStart = calendarAuditStart.getTime();
+        AuditLogs auditLogs = new AuditLogs();
 
         BookRepository bookRepo = new BookRepository();
         ClientRepository clientRepo = new ClientRepository();
@@ -51,7 +56,11 @@ public class Main {
         System.out.println("        - Readăugare cărți în stoc");
         System.out.println("        - Realizare Check Up clienți restanți");
         System.out.println("");
-        System.out.println("            | Introduceți tasta 1 / 2 / 3 pentru a selecta una din opțiuni:");
+        System.out.println("    4. Opțiuni de Audit");
+        System.out.println("        - Efectuare audit ultimele 30 de zile");
+        System.out.println("        - Efectuare audit total");
+        System.out.println("");
+        System.out.println("            | Introduceți tasta 1 / 2 / 3 / 4 pentru a selecta una din opțiuni:");
         int choice1 = in.nextInt();
         in.nextLine();
         if(choice1==1)
@@ -134,11 +143,34 @@ public class Main {
             {
                 System.out.flush();
                 orderRepo.orderCheckUp();
+            }else System.out.println("Alegerea introdusă nu este disponibilă.");
+        }
+        else if(choice1==4)
+        {
+            System.out.flush();
+            System.out.println("_________ Pagina principală -> Audit _________");
+            System.out.println("");
+            System.out.println("    1. Efectuare audit ultimele 30 de zile");
+            System.out.println("    2. Efectuare audit total");
+            System.out.println("");
+            System.out.println("            | Introduceți tasta 1 / 2 pentru a selecta una din opțiuni:");
+            int choice1_4 = in.nextInt();
+            in.nextLine();
+
+            if(choice1_4 == 1)
+            {
+                System.out.flush();
+                auditLogs.selectAudit30();
+            }else if(choice1_4 == 2)
+            {
+                System.out.flush();
+                auditLogs.selectAuditAll();
             }
             else System.out.println("Alegerea introdusă nu este disponibilă.");
         }else System.out.println("Alegerea introdusă nu este disponibilă.");
 
-
+        System.out.println("");
+        auditLogs.selectAuditSession(dateUtilAuditStart);
     }
 
 

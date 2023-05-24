@@ -1,6 +1,8 @@
 package Repositories;
 
 import Classes.Client;
+import Support.AuditLogs;
+import Support.DatabaseHandler;
 
 import java.sql.*;
 import java.util.List;
@@ -42,6 +44,10 @@ public final class ClientRepository {
                     int generatedId = generatedKeys.getInt(1);
                     client.setId(generatedId);
                 }
+                Calendar calendarAudit = Calendar.getInstance();
+                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                AuditLogs auditLogs = new AuditLogs();
+                auditLogs.insertAudit("Inserare client efectuată.",dateUtilAudit);
             }
         }
     }
@@ -95,6 +101,10 @@ public final class ClientRepository {
                     int generatedId = generatedKeys.getInt(1);
                     System.out.println("ID-ul clientului nou este : " + generatedId);
                 }
+                Calendar calendarAudit = Calendar.getInstance();
+                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                AuditLogs auditLogs = new AuditLogs();
+                auditLogs.insertAudit("Inserare client efectuată.",dateUtilAudit);
             }
 
 
@@ -126,6 +136,10 @@ public final class ClientRepository {
                     pstmtDelete.setInt(1,idClient);
                     pstmtDelete.executeUpdate();
                     System.out.println("Clientul a fost șters cu succes!");
+                    Calendar calendarAudit = Calendar.getInstance();
+                    java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                    AuditLogs auditLogs = new AuditLogs();
+                    auditLogs.insertAudit("Ștergere client efectuată.",dateUtilAudit);
                 }
                 else
                 if(answer.equals("NU"))
@@ -158,8 +172,11 @@ public final class ClientRepository {
                 java.sql.Date date = new java.sql.Date(dateUtil.getTime());
                 pstmtUpdate.setDate(1, date);
                 pstmtUpdate.setInt(2, idClient);
-
                 pstmtUpdate.executeUpdate();
+                Calendar calendarAudit = Calendar.getInstance();
+                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                AuditLogs auditLogs = new AuditLogs();
+                auditLogs.insertAudit("Check In client efectuat.",dateUtilAudit);
             }
             else
                 System.out.println("Clientul nu există în baza de date sau ID-ul este greșit.");
@@ -168,6 +185,7 @@ public final class ClientRepository {
 
     public void profilePageQuery() throws SQLException{
         Scanner in = new Scanner(System.in);
+
         System.out.println("_________ MENIU PAGINĂ DE PROFIL CLIENT _________");
         String sqlSearch = "SELECT * from clients WHERE idClient = ?";
         String sqlUpdateName = "UPDATE clients set name = ? WHERE idClient = ?";
@@ -191,6 +209,10 @@ public final class ClientRepository {
                 System.out.println("Comandă activă: " + (rs.getBoolean("activeOrder") ? "DA" : "NU"));
 
                 System.out.println("");
+                Calendar calendarAudit = Calendar.getInstance();
+                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                AuditLogs auditLogs = new AuditLogs();
+                auditLogs.insertAudit("Afișare pagină client efectuată.",dateUtilAudit);
                 System.out.println("Doriți să modificați datele de utilizator?");
                 System.out.println("Introduceți NUME pentru a modifica numele, EMAIL pentru a modifica email-ul sau ANULARE pentru a termina.");
                 String answerModify = in.nextLine();
@@ -200,6 +222,9 @@ public final class ClientRepository {
                     pstmtUpdateName.setString(1,name);
                     pstmtUpdateName.setInt(2,answer);
                     pstmtUpdateName.executeUpdate();
+                    Calendar calendarAudit2 = Calendar.getInstance();
+                    java.util.Date  dateUtilAudit2 = calendarAudit2.getTime();
+                    auditLogs.insertAudit("Modificare nume client efectuată.",dateUtilAudit2);
                 }
                 else
                     if(answerModify.equals("EMAIL"))
@@ -209,6 +234,9 @@ public final class ClientRepository {
                         pstmtUpdateEmail.setString(1,email);
                         pstmtUpdateEmail.setInt(2,answer);
                         pstmtUpdateEmail.executeUpdate();
+                        Calendar calendarAudit2 = Calendar.getInstance();
+                        java.util.Date  dateUtilAudit2 = calendarAudit2.getTime();
+                        auditLogs.insertAudit("Modificare email client efectuată.",dateUtilAudit2);
                     }
                     else if(answerModify.equals("ANULARE"))
                     {
@@ -233,6 +261,10 @@ public final class ClientRepository {
             int result = pstmt.executeUpdate();
         }
         clientList.remove(client);
+        Calendar calendarAudit = Calendar.getInstance();
+        java.util.Date  dateUtilAudit = calendarAudit.getTime();
+        AuditLogs auditLogs = new AuditLogs();
+        auditLogs.insertAudit("Ștergere client efectuată.",dateUtilAudit);
     }
 
     public void getClients() throws SQLException {

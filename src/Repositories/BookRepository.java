@@ -1,9 +1,9 @@
 package Repositories;
 
 import Classes.Book;
-import Classes.Author;
-import Repositories.*;
-import java.io.BufferedReader;
+import Support.AuditLogs;
+import Support.DatabaseHandler;
+
 import java.sql.*;
 import java.util.*;
 
@@ -43,6 +43,10 @@ public final class BookRepository {
                     int generatedId = generatedKeys.getInt(1);
                     book.setIdBook(generatedId);
                 }
+                Calendar calendarAudit = Calendar.getInstance();
+                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                AuditLogs auditLogs = new AuditLogs();
+                auditLogs.insertAudit("Inserare carte efectuată.",dateUtilAudit);
             }
         }
     }
@@ -95,8 +99,7 @@ public final class BookRepository {
         else System.out.println("Ati introdus un raspuns indisponibil.");
     }
 
-    public void filteredView()
-    {
+    public void filteredView() throws SQLException {
         Map<Book,Integer> bookCopiesMap = new HashMap<>();
         for(Book book : bookList)
             bookCopiesMap.put(book,book.getCopiesInStore());
@@ -109,6 +112,10 @@ public final class BookRepository {
             int copiesInStore = element.getValue();
             System.out.println("Titlul cărții: " + book.getTitle() + "    Exemplare în stoc: " + copiesInStore);
         }
+        Calendar calendarAudit = Calendar.getInstance();
+        java.util.Date  dateUtilAudit = calendarAudit.getTime();
+        AuditLogs auditLogs = new AuditLogs();
+        auditLogs.insertAudit("Sortare cărți efectuată.",dateUtilAudit);
     }
 
     public void deleteBook(Book book) throws SQLException
@@ -123,6 +130,10 @@ public final class BookRepository {
             int result = pstmt.executeUpdate();
         }
         bookList.remove(book);
+        Calendar calendarAudit = Calendar.getInstance();
+        java.util.Date  dateUtilAudit = calendarAudit.getTime();
+        AuditLogs auditLogs = new AuditLogs();
+        auditLogs.insertAudit("Ștergere carte efectuată.",dateUtilAudit);
     }
 
     public void getBooks() throws SQLException

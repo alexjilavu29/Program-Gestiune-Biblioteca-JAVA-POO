@@ -1,8 +1,9 @@
 package Repositories;
 
 import Classes.*;
+import Support.AuditLogs;
+import Support.DatabaseHandler;
 
-import java.awt.desktop.SystemEventListener;
 import java.sql.*;
 import java.util.List;
 import java.util.ArrayList;
@@ -35,6 +36,10 @@ public final class OrderRepository {
                 int generatedId = generatedKeys.getInt(1);
                 order.setIdOrder(generatedId);
             }
+            Calendar calendarAudit = Calendar.getInstance();
+            java.util.Date  dateUtilAudit = calendarAudit.getTime();
+            AuditLogs auditLogs = new AuditLogs();
+            auditLogs.insertAudit("Inserare comandă efectuată.",dateUtilAudit);
         }
 
     }
@@ -104,6 +109,10 @@ public final class OrderRepository {
                                 System.out.println("Comandă efectuată cu succes.");
                                 System.out.println("Listă comenzi:");
                                 System.out.println(orderList);
+                                Calendar calendarAudit = Calendar.getInstance();
+                                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                                AuditLogs auditLogs = new AuditLogs();
+                                auditLogs.insertAudit("Împrumutare carte efectuată.",dateUtilAudit);
                             }
                             else{
                                 System.out.println("Nu sunt suficiente cărți pentru a susține comanda.");
@@ -169,6 +178,10 @@ public final class OrderRepository {
 
                 pstmtUpdateClient.setInt(1,rs.getInt("idClient"));
                 pstmtUpdateClient.executeUpdate();
+                Calendar calendarAudit = Calendar.getInstance();
+                java.util.Date  dateUtilAudit = calendarAudit.getTime();
+                AuditLogs auditLogs = new AuditLogs();
+                auditLogs.insertAudit("Înapoiere carte efectuată.",dateUtilAudit);
 
             } else {
                 System.out.println("Clientul introdus nu are o comanda activa sau ID-ul este greșit.");
@@ -178,6 +191,7 @@ public final class OrderRepository {
 
     public void orderCheckUp() throws SQLException
     {
+
         String sqlQuery = "SELECT * FROM orders WHERE returnDate<? AND completed = 0";
         String sqlUpdate = "UPDATE orders set pastDueTime = 1 WHERE idOrder = ?";
         try (Connection con = DatabaseHandler.getConnection();
@@ -196,6 +210,10 @@ public final class OrderRepository {
                 System.out.println("UPDATE: Clientul cu ID-ul " + rs.getString("idClient") +
                         " a întârziat în aducerea comenzii." + "    (Comanda Nr. "+ rs.getInt("idOrder") + ")");
             }
+            Calendar calendarAudit = Calendar.getInstance();
+            java.util.Date  dateUtilAudit = calendarAudit.getTime();
+            AuditLogs auditLogs = new AuditLogs();
+            auditLogs.insertAudit("Check Up clienți restanți efectuat.",dateUtilAudit);
         }
     }
 
@@ -211,6 +229,10 @@ public final class OrderRepository {
             int result = pstmt.executeUpdate();
         }
         orderList.remove(order);
+        Calendar calendarAudit = Calendar.getInstance();
+        java.util.Date  dateUtilAudit = calendarAudit.getTime();
+        AuditLogs auditLogs = new AuditLogs();
+        auditLogs.insertAudit("Ștergere comandă efectuată.",dateUtilAudit);
     }
 
     public void getOrders() throws SQLException {
