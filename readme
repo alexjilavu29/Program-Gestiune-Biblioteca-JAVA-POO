@@ -29,6 +29,12 @@ deleteAuthor(Author author)  -> Folosita pentru stergere de obiecte (Test)
 getAuthors()  -> Folosita pentru interogare baza de date
 inputAuthorDetails()  -> Folosita pentru inserare date despre autor
 
+Metode specifice AuditLogs:
+insertAudit(String description, Date date)  -> Folosita pentru inserare de modificari in baza de date
+selectAudit30() -> Folosita pentru afisarea modificarilor din ultimele 30 de zile
+selectAuditAll()  -> Folosita pentru afisarea tuturor modificarilor
+selectAuditSession(Date dateTime) -> Folosita pentru afisarea modificarilor din sesiunea actuala
+
 Tipuri de obiecte:
 Book
 BookRepository
@@ -40,3 +46,4 @@ Person
 Author
 AuthorRepository
 DatabaseHandler
+AuditLogs
