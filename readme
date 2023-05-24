@@ -1,0 +1,42 @@
+Metode specifice Book:
+insertBook(Book book) -> Folosita pentru inserare de obiecte (Test)
+insertBookQuery() -> Adaugare de carti in baza de date
+filteredView()  -> Ordonare cărți după numărul de copii disponibile
+deleteBook(Book book) -> Folosita pentru stergere de obiecte (Test)
+getBooks()  -> Folosita pentru interogare baza de date
+inputBookDetails()  -> Folosita pentru inserare date despre carte
+
+Metode specifice Client:
+insertClient(Client client)  -> Folosita pentru inserare de obiecte (Test)
+insertClientQuery()  -> Adaugare de clienti in baza de date
+deleteClientQuery()  -> Stergere de clienti in baza de date
+clientCheckIn()  -> Realizare Check In Client
+profilePageQuery()  -> Pagină de Profil Client
+deleteClient(Client client)  -> Folosita pentru stergere de obiecte (Test)
+getClients()  -> Folosita pentru interogare baza de date
+
+Metode specifice Order:
+insertOrder(Order order)  -> Folosita pentru inserare de obiecte (Test)
+borrowBookQuery()  -> Împrumutare cărți
+retrieveBookQuery()  -> Readăugare cărți în stoc
+orderCheckUp()  -> Realizare Check Up clienți restanți
+deleteOrder(Order order)  -> Folosita pentru stergere de obiecte (Test)
+getOrders()  -> Folosita pentru interogare baza de date
+
+Metode specifice Author:
+insertAuthor(Author author)  -> Folosita pentru inserare de obiecte (Test)
+deleteAuthor(Author author)  -> Folosita pentru stergere de obiecte (Test)
+getAuthors()  -> Folosita pentru interogare baza de date
+inputAuthorDetails()  -> Folosita pentru inserare date despre autor
+
+Tipuri de obiecte:
+Book
+BookRepository
+Client
+ClientRepository
+Order
+OrderRepository
+Person
+Author
+AuthorRepository
+DatabaseHandler
