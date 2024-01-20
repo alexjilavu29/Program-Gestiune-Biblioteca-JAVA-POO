@@ -6,7 +6,7 @@ deleteBook(Book book) -> Folosita pentru stergere de obiecte (Test)
 getBooks()  -> Folosita pentru interogare baza de date
 inputBookDetails()  -> Folosita pentru inserare date despre carte
 
-Metode specifice Client:
+Metode specifice pentru Client:
 insertClient(Client client)  -> Folosita pentru inserare de obiecte (Test)
 insertClientQuery()  -> Adaugare de clienti in baza de date
 deleteClientQuery()  -> Stergere de clienti in baza de date
