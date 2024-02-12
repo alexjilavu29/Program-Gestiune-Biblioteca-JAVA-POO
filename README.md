@@ -1,55 +1,17 @@
-# Sistem de Gestiune a unei Biblioteci
+# Sistem de Gestiune Bibliotecă
 
-Acest document descrie metodele utilizate în sistemul nostru de gestiune a bibliotecii, incluzând interacțiunile cu cărțile, clienții, comenzile și autorii.
+Acest proiect oferă o soluție complexă pentru gestionarea bibliotecilor, accentuând eficiența și accesibilitatea pentru utilizatori și personalul bibliotecii. Integrând funcționalități avansate, sistemul permite o administrare detaliată a cărților, clienților și împrumuturilor, îmbunătățind fluxul de lucru și interacțiunea cu baza de date.
 
-## Cărți
+## Funcționalități
 
-- `insertBook(Book book)`: Folosită pentru testarea inserării obiectelor.
-- `insertBookQuery()`: Adaugă cărți în baza de date.
-- `filteredView()`: Ordonează cărțile după numărul de copii disponibile.
-- `deleteBook(Book book)`: Folosită pentru testarea ștergerii obiectelor.
-- `getBooks()`: Interoghează baza de date pentru cărți.
-- `inputBookDetails()`: Permite inserarea detaliilor despre carte.
+Sistemul include managementul cărților și autorilor, administrarea clienților, gestionarea împrumuturilor și un sistem de audit pentru urmărirea acțiunilor. 
+O detaliere a metodelor implementate poate fi găsită în fișierul comenzi&obiecte.md.
 
-## Clienți
+## Tehnologii
 
-- `insertClient(Client client)`: Folosită pentru testarea inserării obiectelor.
-- `insertClientQuery()`: Adaugă clienți în baza de date.
-- `deleteClientQuery()`: Șterge clienți din baza de date.
-- `clientCheckIn()`: Realizează Check-In pentru clienți.
-- `profilePageQuery()`: Afișează pagina de profil a clientului.
-- `deleteClient(Client client)`: Folosită pentru testarea ștergerii obiectelor.
-- `getClients()`: Interoghează baza de date pentru clienți.
+Proiectul se focusează pe integrarea funcționaliăților limbajului de programare Java și a principiilor de Programare Orientată pe Obiecte, asigurând un cod modular și eficient.
 
-## Comenzi
+## Contribuții
 
-- `insertOrder(Order order)`: Folosită pentru testarea inserării obiectelor.
-- `borrowBookQuery()`: Permite împrumutarea cărților.
-- `retrieveBookQuery()`: Readaugă cărțile în stoc.
-- `orderCheckUp()`: Verifică clienții restanți.
-- `deleteOrder(Order order)`: Folosită pentru testarea ștergerii obiectelor.
-- `getOrders()`: Interoghează baza de date pentru comenzi.
+Contribuțiile sunt încurajate. Folosește procedurile standard de pull request pentru a propune îmbunătățiri.
 
-## Autori
-
-- `insertAuthor(Author author)`: Folosită pentru testarea inserării obiectelor.
-- `deleteAuthor(Author author)`: Folosită pentru testarea ștergerii obiectelor.
-- `getAuthors()`: Interoghează baza de date pentru autori.
-- `inputAuthorDetails()`: Permite inserarea detaliilor despre autor.
-
-## AuditLogs
-
-- `insertAudit(String description, Date date)`: Înregistrează modificările în baza de date.
-- `selectAudit30()`: Afișează modificările din ultimele 30 de zile.
-- `selectAuditAll()`: Afișează toate modificările.
-- `selectAuditSession(Date dateTime)`: Afișează modificările din sesiunea curentă.
-
-## Tipuri de Obiecte
-
-- `Book`, `BookRepository`
-- `Client`, `ClientRepository`
-- `Order`, `OrderRepository`
-- `Person`
-- `Author`, `AuthorRepository`
-- `DatabaseHandler`
-- `AuditLogs`
