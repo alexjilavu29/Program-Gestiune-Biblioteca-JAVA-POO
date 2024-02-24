@@ -2,7 +2,7 @@
 
 Acest proiect oferă o soluție complexă pentru gestionarea bibliotecilor, accentuând eficiența și accesibilitatea pentru utilizatori și personalul bibliotecii. Integrând funcționalități avansate, sistemul permite o administrare detaliată a cărților, clienților și împrumuturilor, îmbunătățind fluxul de lucru și interacțiunea cu baza de date.
 
-## Funcționalități
+## Funcționalități 
 
 Sistemul include managementul cărților și autorilor, administrarea clienților, gestionarea împrumuturilor și un sistem de audit pentru urmărirea acțiunilor. 
 O detaliere a metodelor implementate poate fi găsită în fișierul comenzi&obiecte.md.
